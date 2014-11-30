@@ -25,3 +25,6 @@ redisslave:
   command: redis-server /etc/redis.conf
   volumes:
     - ./redis/slave.conf:/etc/redis.conf:ro
+  links:
+    - redismaster:master
+
