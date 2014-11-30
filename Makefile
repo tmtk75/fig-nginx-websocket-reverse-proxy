@@ -5,7 +5,7 @@ run: modules
 
 pm2: modules
 	REDIS_URL=localhost:6379 \
-    pm2 start server.js --name server -i max
+	  pm2 start server.js --name server -i max
 
 modules: node_modules/socket.io
 
@@ -14,7 +14,7 @@ pm2del:
 
 ## Redis
 redis-cli:
-	redis-cli -h `boot2docker ip 2>/dev/null`
+	redis-cli -h `boot2docker ip 2>/dev/null` $(argv)
 
 ## Browser
 open:
