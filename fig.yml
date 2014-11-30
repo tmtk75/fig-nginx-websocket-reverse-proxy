@@ -1,0 +1,27 @@
+nginx:
+  image: nginx:1.7
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  links:
+    - server:server
+  ports:
+    - "8080:8080"         
+
+server:
+  build: .
+  links:
+    - redismaster:redis
+
+redismaster:
+  image: redis
+  command: redis-server /etc/redis.conf
+  volumes:
+    - ./redis/master.conf:/etc/redis.conf:ro
+  ports:
+    - "6379:6379"
+
+redisslave:
+  image: redis
+  command: redis-server /etc/redis.conf
+  volumes:
+    - ./redis/slave.conf:/etc/redis.conf:ro
