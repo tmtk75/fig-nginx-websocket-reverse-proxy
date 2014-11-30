@@ -39,11 +39,11 @@ redismaster:
   ports:
     - "6379:6379"
 
-redisslave:
-  image: redis
-  command: redis-server /etc/redis.conf
-  volumes:
-    - ./redis-slave.conf:/etc/redis.conf:ro
-  links:
-    - redismaster:master
+#redisslave:
+#  image: redis
+#  command: redis-server /etc/redis.conf
+#  volumes:
+#    - ./redis-slave.conf:/etc/redis.conf:ro
+#  links:
+#    - redismaster:master
 
