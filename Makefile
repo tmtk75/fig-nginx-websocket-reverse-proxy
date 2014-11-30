@@ -16,6 +16,9 @@ pm2del:
 redis-cli:
 	redis-cli -h `boot2docker ip 2>/dev/null` $(argv)
 
+docker-exec:
+	docker exec -it fignginxwebsocketreverseproxy_redisslave_1 /bin/bash
+
 ## Browser
 open:
 	open http://`boot2docker ip`:8080

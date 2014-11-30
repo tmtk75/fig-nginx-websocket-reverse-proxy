@@ -10,12 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "pm2": "^0.12.1",
     "redis": "^0.12.1",
     "socket.io": "^1.2.1",
     "socket.io-redis": "^0.1.4"
   },
   "devDependencies": {
-    "node-theseus": "^0.2.6",
-    "pm2": "^0.12.1"
+    "node-theseus": "^0.2.6"
   }
 }

@@ -12,13 +12,23 @@ var io = require('socket.io').listen(app);
 
 // - http://stackoverflow.com/questions/24499306/how-to-set-redisstore-node-express-socket-io-heroku
 // - http://qiita.com/nariyu/items/1c17dd567f866c698481
-var redis = require('socket.io-redis');
-var url = process.env.REDIS_URL || "redis:6379"
-io.adapter(redis(url));
+var redisAdapter = require('socket.io-redis');
+var redis = require('redis');
+var url = process.env.REDIS_URL
+if (url) {
+  io.adapter(redisAdapter(url));
+  console.log("url", url);
+} else {
+  var pub = redis.createClient(6379, "redismaster" /* host */);
+  var sub = redis.createClient(6379, "redisslave" /* host */, {detect_buffers: true});
+  var opts = {pubClient:pub, subClient:sub}
+  io.adapter(redisAdapter("redismaster:6379", opts));
+  console.log("on fig");
+}
 
 
-io.sockets.on('connection', function(socket) {
-  socket.on('msg', function(data) {
+io.on('connection', function(sock) {
+  sock.on('msg', function(data) {
     io.emit('msg', data);
     console.log("msg", data);
   });

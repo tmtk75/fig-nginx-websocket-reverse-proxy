@@ -17,14 +17,16 @@ nginx:
 server1:
   build: .
   links:
-    - redismaster:redis
+    - redismaster:redismaster
+    - redisslave:redisslave
   ports:
     - "3001:3000"
 
 server2:
   build: .
   links:
-    - redismaster:redis
+    - redismaster:redismaster
+    - redisslave:redisslave
   ports:
     - "3002:3000"
 
@@ -39,11 +41,11 @@ redismaster:
   ports:
     - "6379:6379"
 
-#redisslave:
-#  image: redis
-#  command: redis-server /etc/redis.conf
-#  volumes:
-#    - ./redis-slave.conf:/etc/redis.conf:ro
-#  links:
-#    - redismaster:master
+redisslave:
+  image: redis
+  command: redis-server /etc/redis.conf
+  volumes:
+    - ./redis-slave.conf:/etc/redis.conf:ro
+  links:
+    - redismaster:master
 
