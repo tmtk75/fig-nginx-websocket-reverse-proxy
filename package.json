@@ -13,6 +13,7 @@
     "pm2": "^0.12.1",
     "redis": "^0.12.1",
     "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1",
     "socket.io-redis": "^0.1.4"
   },
   "devDependencies": {
