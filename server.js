@@ -30,6 +30,9 @@ if (url) {
 io.on('connection', function(sock) {
   sock.on('msg', function(data) {
     io.emit('msg', data);
-    console.log("msg", data);
+    console.log("msg:", data);
+  });
+  sock.on('disconnect', function(data) {
+    console.log("disconnect:", data);
   });
 });
