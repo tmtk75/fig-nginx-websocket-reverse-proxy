@@ -28,6 +28,7 @@ if (url) {
 
 
 io.on('connection', function(sock) {
+  console.log('# of conns', sock.client.conn.server.clientsCount);
   sock.on('msg', function(data) {
     io.emit('msg', data);
     console.log("msg:", data);
