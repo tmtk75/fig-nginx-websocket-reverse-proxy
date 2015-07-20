@@ -15,7 +15,7 @@
 ## nginx
 ##
 nginx:
-  image: nginx:1.7.7
+  image: nginx:1.9.3
   volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf:ro
   links:
@@ -47,7 +47,7 @@ server2:
 ## Redis
 ##
 redismaster:
-  image: redis
+  image: redis:3.0.3
   command: redis-server /etc/redis.conf
   volumes:
     - ./redis-master.conf:/etc/redis.conf:ro
@@ -55,7 +55,7 @@ redismaster:
     - "6379:6379"
 
 redisslave:
-  image: redis
+  image: redis:3.0.3
   command: redis-server /etc/redis.conf
   volumes:
     - ./redis-slave.conf:/etc/redis.conf:ro
