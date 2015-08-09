@@ -72,6 +72,8 @@ redisslave1:
     - ./redis-slave.conf:/etc/redis.conf:ro
   links:
     - redismaster:master
+  ports:
+    - "6479:6379"
 
 redisslave2:
   image: redis:3.0.3
@@ -80,4 +82,6 @@ redisslave2:
     - ./redis-slave.conf:/etc/redis.conf:ro
   links:
     - redismaster:master
+  ports:
+    - "6579:6379"
 
